@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pangerger.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="SpringBoot in learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot">
+<meta property="og:url" content="https://pangerger.github.io/2019/07/21/SpringBoot/index.html">
+<meta property="og:site_name" content="Micheal Pan">
+<meta property="og:description" content="SpringBoot in learning">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-07-21T07:26:57.000Z">
+<meta property="article:modified_time" content="2020-05-28T11:41:00.000Z">
+<meta property="article:author" content="Micheal Pan">
+<meta property="article:tag" content="spring">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pangerger.github.io/2019/07/21/SpringBoot/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>SpringBoot | Micheal Pan</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Micheal Pan</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos" rel="section"><i class="fa fa fa-th fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#error"><span class="nav-number">2.</span> <span class="nav-text">error</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#idea-%E4%B8%AD%E6%89%80%E6%9C%89%E6%B3%A8%E8%A7%A3%E6%97%A0%E6%95%88"><span class="nav-number">2.1.</span> <span class="nav-text">idea 中所有注解无效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%8F%E6%97%A5%E6%90%9C%E7%B4%A2"><span class="nav-number">3.</span> <span class="nav-text">每日搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hashmap%E4%B8%BA%E4%BD%95%E6%9F%A5%E6%89%BE%E9%82%A3%E4%B9%88%E5%BF%AB"><span class="nav-number">3.1.</span> <span class="nav-text">hashmap为何查找那么快</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#idea"><span class="nav-number">4.</span> <span class="nav-text">idea</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#idea-%E4%B8%AD%E5%AF%BC%E5%85%A5%E5%B7%B2%E6%9C%89%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.1.</span> <span class="nav-text">idea 中导入已有项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E5%AF%B9%E6%9F%90%E6%96%87%E4%BB%B6%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="nav-number">4.2.</span> <span class="nav-text">取消对某文件的索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BB%E9%99%86"><span class="nav-number">5.</span> <span class="nav-text">登陆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">5.1.</span> <span class="nav-text">权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3"><span class="nav-number">5.1.1.</span> <span class="nav-text">初步了解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3-Zuul-%E4%B8%8E-Redis-%E7%BB%93%E5%90%88%E5%AE%9E%E7%8E%B0-Token-%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8Cs"><span class="nav-number">6.</span> <span class="nav-text">服务网关 Zuul 与 Redis 结合实现 Token 权限校验s</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFtoken"><span class="nav-number">6.1.</span> <span class="nav-text">什么是token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Base64%E5%8A%A0%E5%AF%86"><span class="nav-number">6.2.</span> <span class="nav-text">Base64加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.3.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">7.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E4%BC%98%E5%8C%96"><span class="nav-number">7.1.</span> <span class="nav-text">mysql优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-mvcc"><span class="nav-number">7.1.1.</span> <span class="nav-text">mysql mvcc</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java-se"><span class="nav-number">8.</span> <span class="nav-text">java se</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-number">8.1.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E4%B8%AD%E6%96%87"><span class="nav-number">8.2.</span> <span class="nav-text">正则表达式，判断是否含有中文</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">Spring 拦截器</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Micheal Pan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pangerger.github.io/2019/07/21/SpringBoot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Micheal Pan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Micheal Pan">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringBoot
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-21 15:26:57" itemprop="dateCreated datePublished" datetime="2019-07-21T15:26:57+08:00">2019-07-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-05-28 19:41:00" itemprop="dateModified" datetime="2020-05-28T19:41:00+08:00">2020-05-28</time>
+      </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/07/21/SpringBoot/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/21/SpringBoot/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>SpringBoot in learning</p>
+<a id="more"></a>
+
+
+
+
+
+<h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><p><a target="_blank" rel="noopener" href="https://github.com/pangerger/springboot-learning-example">https://github.com/pangerger/springboot-learning-example</a></p>
+<h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><h2 id="idea-中所有注解无效"><a href="#idea-中所有注解无效" class="headerlink" title="idea 中所有注解无效"></a>idea 中所有注解无效</h2><p>classpath有问题，创建项目时出错。</p>
+<h1 id="每日搜索"><a href="#每日搜索" class="headerlink" title="每日搜索"></a>每日搜索</h1><h2 id="hashmap为何查找那么快"><a href="#hashmap为何查找那么快" class="headerlink" title="hashmap为何查找那么快"></a>hashmap为何查找那么快</h2><p>O(1)???</p>
+<p><a target="_blank" rel="noopener" href="http://www.51gjie.com/java/679.html">http://www.51gjie.com/java/679.html</a></p>
+<p>看图：<a target="_blank" rel="noopener" href="http://www.51gjie.com/Images/image1/lo5salay.lco.jpg">http://www.51gjie.com/Images/image1/lo5salay.lco.jpg</a></p>
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><h2 id="idea-中导入已有项目"><a href="#idea-中导入已有项目" class="headerlink" title="idea 中导入已有项目"></a>idea 中导入已有项目</h2><p>直到点击pom.xml文件为止</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Happy_wu/article/details/80423150">https://blog.csdn.net/Happy_wu/article/details/80423150</a></p>
+<h2 id="取消对某文件的索引"><a href="#取消对某文件的索引" class="headerlink" title="取消对某文件的索引"></a>取消对某文件的索引</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36305203">https://zhuanlan.zhihu.com/p/36305203</a></p>
+<blockquote>
+<p>project struct中 model里设置。</p>
+</blockquote>
+<h1 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h1><h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><blockquote>
+<p>token + redis + 网关</p>
+<blockquote>
+<p>token本身是一个字符串，服务器生成发给客户端</p>
+<p>客户端每次请求都带上这个token，服务端校验它。</p>
+</blockquote>
+</blockquote>
+<h3 id="初步了解"><a href="#初步了解" class="headerlink" title="初步了解"></a>初步了解</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5b914dd6a4ef">https://www.jianshu.com/p/5b914dd6a4ef</a></p>
+<blockquote>
+<p>一个tokenController</p>
+<p>ITokenService及其实现类TokenService</p>
+<p>拦截器</p>
+</blockquote>
+<p>====</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/274566992">https://www.zhihu.com/question/274566992</a></p>
+<p>jwt及redis+token</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5b914dd6a4ef">https://www.jianshu.com/p/5b914dd6a4ef</a></p>
+<blockquote>
+<h1 id="服务网关-Zuul-与-Redis-结合实现-Token-权限校验s"><a href="#服务网关-Zuul-与-Redis-结合实现-Token-权限校验s" class="headerlink" title="服务网关 Zuul 与 Redis 结合实现 Token 权限校验s"></a><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017058010">服务网关 Zuul 与 Redis 结合实现 Token 权限校验</a>s</h1><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017058010">https://segmentfault.com/a/1190000017058010</a></p>
+</blockquote>
+<h2 id="什么是token"><a href="#什么是token" class="headerlink" title="什么是token"></a>什么是token</h2><blockquote>
+<p>英文：代价卷，礼卷</p>
+<p>计算机术语：令牌    </p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daimengs/article/details/81088172">https://blog.csdn.net/daimengs/article/details/81088172</a></p>
+<blockquote>
+<p>token的意思是“令牌”，是服务端生成的一串字符串，作为客户端进行请求的一个标识。</p>
+<p>token的使用的是https???</p>
+<p>在网络层面上token使用明文传输的话是非常危险的，所以一定要使用HTTPS协议。</p>
+</blockquote>
+<h2 id="Base64加密"><a href="#Base64加密" class="headerlink" title="Base64加密"></a>Base64加密</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38036594/answer/74917716">https://www.zhihu.com/question/38036594/answer/74917716</a></p>
+<blockquote>
+<p>用64个可读字符进行编码，来表示二进制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数字：<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>，共<span class="number">10</span>个小写字母：a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z，共<span class="number">26</span>个大写字母：A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z，共<span class="number">26</span>个</span><br><span class="line">+以及斜杠/</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用于在互联网中传输字节</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_20545367/article/details/79538530">https://blog.csdn.net/qq_20545367/article/details/79538530</a></p>
+<p>Base64一般用于在HTTP协议下传输二进制数据，由于HTTP协议是文本协议，所以在HTTP协议下传输二进制数据需要将二进制数据转换为字符数据。然而直接转换是不行的。因为网络传输只能传输可打印字符。什么是可打印字符？在ASCII码中规定，0<del>31、127这33个字符属于控制字符，32</del>126这95个字符属于可打印字符，也就是说网络传输只能传输这95个字符，不在这个范围内的字符无法传输。那么该怎么才能传输其他字符呢？其中一种方式就是使用Base64。</p>
+</blockquote>
+<hr>
+<p>问题？  </p>
+<blockquote>
+<p>http 可传输字符？？</p>
+<p>怎么编码？？？ 什么是用=补零。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://linuxsogood.org/1227.html">http://linuxsogood.org/1227.html</a></p>
+<blockquote>
+<p>Base64编码仅用于一个可打印ASCII字符就可以安全转换任何进进制数据，它常用于对电子邮件附件进行编码，使其通过SMTP安全传输。它还可以用在基本HTTP验证机制中对用户证书进行编码</p>
+<p>许多Web应用程序利用Base64编码在cookie与其他参数中传递二进制数据，甚至用它打乱敏感数据以防止即使是细微的修改。应该总是留意并解码发送到客户端的任何Base64数据，由于这些数据使用特殊的字符集，而且有时会在字符串末尾添加补足字符，因此可以轻易辨别出Base64编码的字符串</p>
+</blockquote>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//使用java自带的base64编码</span></span><br><span class="line">==============================================</span><br><span class="line">  <span class="keyword">import</span> java.util.Base64;</span><br><span class="line">  <span class="comment">// 编码</span></span><br><span class="line">        String encode = Base64.getEncoder().encodeToString(<span class="string">&quot;So&quot;</span>.getBytes(<span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line">        System.out.println(encode);</span><br><span class="line">        <span class="comment">// 解码</span></span><br><span class="line">        <span class="keyword">byte</span>[] decode = Base64.getDecoder().decode(encode);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(decode, <span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line"></span><br><span class="line"> --------------------- </span><br><span class="line"> 版权声明：本文为CSDN博主「艾华生」的原创文章，遵循CC <span class="number">4.0</span> by-sa版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line"> 原文链接：https:<span class="comment">//blog.csdn.net/qq_20545367/article/details/79538530</span></span><br><span class="line"> </span><br><span class="line">====================</span><br><span class="line">    </span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p> API 接口设计中Token设计讨论<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9fdcfd950292">https://www.jianshu.com/p/9fdcfd950292</a><br><a target="_blank" rel="noopener" href="http://linuxsogood.org/1227.html">http://linuxsogood.org/1227.html</a></p>
+</blockquote>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="mysql优化"><a href="#mysql优化" class="headerlink" title="mysql优化"></a>mysql优化</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://dbaplus.cn/news-155-1531-1.html">https://dbaplus.cn/news-155-1531-1.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t_message limit 10;</span><br><span class="line"></span><br><span class="line">...省略结果集</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">mysql&gt; show status like &#39;last_query_cost&#39;;</span><br><span class="line"></span><br><span class="line">+-----------------+-------------+</span><br><span class="line"></span><br><span class="line">| Variable_name   | Value       |</span><br><span class="line"></span><br><span class="line">+-----------------+-------------+</span><br><span class="line"></span><br><span class="line">| Last_query_cost | 6391.799000 |</span><br><span class="line"></span><br><span class="line">+-----------------+-------------+</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h3 id="mysql-mvcc"><a href="#mysql-mvcc" class="headerlink" title="mysql mvcc"></a>mysql mvcc</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/whoamiyang/article/details/51901888">https://blog.csdn.net/whoamiyang/article/details/51901888</a></p>
+</blockquote>
+<h1 id="java-se"><a href="#java-se" class="headerlink" title="java se"></a>java se</h1><h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><blockquote>
+<p>使用 List.foreach()方法或foreach方法来操作add  remove是会出异常的。</p>
+<p>所以应该使用迭代器的方式来做。</p>
+<p><a target="_blank" rel="noopener" href="https://zacard.net/2016/01/07/list-remove/">https://zacard.net/2016/01/07/list-remove/</a></p>
+</blockquote>
+<h2 id="正则表达式，判断是否含有中文"><a href="#正则表达式，判断是否含有中文" class="headerlink" title="正则表达式，判断是否含有中文"></a>正则表达式，判断是否含有中文</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/z69183787/article/details/53162015">https://blog.csdn.net/z69183787/article/details/53162015</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.micmiu.com/lang/java/java-check-chinese/">http://www.micmiu.com/lang/java/java-check-chinese/</a></p>
+</blockquote>
+<h1 id="Spring-拦截器"><a href="#Spring-拦截器" class="headerlink" title="Spring 拦截器"></a>Spring 拦截器</h1><p><strong>HandlerInterceptor</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dc5cc2e25ab2">https://www.jianshu.com/p/dc5cc2e25ab2</a></p>
+<p>三个重载方法</p>
+</blockquote>
+
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div>
+      
+        
+      
+</div>
+          <div class="post-tags">
+              <a href="/tags/spring/" rel="tag"># spring</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/02/10/%E7%9A%AE%E8%82%A4%E6%80%A7%E7%97%85%E5%AD%A6/" rel="prev" title="皮肤性病学">
+                  <i class="fa fa-chevron-left"></i> 皮肤性病学
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="next" title="单元测试">
+                  单元测试 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Micheal Pan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+<div class="powered-by">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+        本站访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_pv">
+        本站访问量<span id="busuanzi_value_site_pv"></span>
+    </span>
+</div>
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"y480IKFCxDOAxLF6uhUTuOYx-gzGzoHsz","appKey":"W6c4eVp3NYCpr07YjSFykNyV","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2019/07/21/SpringBoot/",
+      serverURLs: "https://y480ikfc.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

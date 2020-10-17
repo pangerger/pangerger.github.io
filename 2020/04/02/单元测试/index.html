@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pangerger.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="mock 测试 controller">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单元测试">
+<meta property="og:url" content="https://pangerger.github.io/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Micheal Pan">
+<meta property="og:description" content="mock 测试 controller">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-02T12:34:19.000Z">
+<meta property="article:modified_time" content="2020-05-28T11:41:34.000Z">
+<meta property="article:author" content="Micheal Pan">
+<meta property="article:tag" content="springBoot">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pangerger.github.io/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>单元测试 | Micheal Pan</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Micheal Pan</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos" rel="section"><i class="fa fa fa-th fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#json-%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">json 与对象的转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mock-%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">mock 学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mockito"><span class="nav-number">2.1.</span> <span class="nav-text">Mockito</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#verify"><span class="nav-number">2.1.1.</span> <span class="nav-text">verify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B5%8B%E8%AF%95%E6%A1%A9"><span class="nav-number">2.1.2.</span> <span class="nav-text">做测试桩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">2.1.3.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot-%E6%B5%8B%E8%AF%95Controller"><span class="nav-number">3.</span> <span class="nav-text">SpringBoot 测试Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MockHttpServlet"><span class="nav-number">3.1.</span> <span class="nav-text">MockHttpServlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90Web%E7%8E%AF%E5%A2%83%E6%96%B9%E5%BC%8F-Controller"><span class="nav-number">3.2.</span> <span class="nav-text">集成Web环境方式 Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">独立测试方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-mockMvc"><span class="nav-number">3.4.</span> <span class="nav-text">使用 mockMvc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="nav-number">4.1.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MockMvc"><span class="nav-number">5.1.</span> <span class="nav-text">MockMvc</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Micheal Pan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pangerger.github.io/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Micheal Pan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Micheal Pan">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          单元测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-02 20:34:19" itemprop="dateCreated datePublished" datetime="2020-04-02T20:34:19+08:00">2020-04-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-05-28 19:41:34" itemprop="dateModified" datetime="2020-05-28T19:41:34+08:00">2020-05-28</time>
+      </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>mock 测试 controller </p>
+<a id="more"></a>
+<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><h2 id="json-与对象的转换"><a href="#json-与对象的转换" class="headerlink" title="json 与对象的转换"></a>json 与对象的转换</h2><blockquote>
+<p>详情 请看 pan.day.learn.javase.jsons.JsonChangeObject </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">String oo = <span class="string">&quot;&#123;\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  \&quot;age\&quot;: 0,\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  \&quot;date\&quot;: \&quot;2020-03-27T01:20:49.788Z\&quot;,\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  \&quot;dragonModelMap\&quot;: &#123;&#125;,\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  \&quot;id\&quot;: \&quot;string\&quot;,\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  \&quot;name\&quot;: \&quot;string\&quot;,\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  \&quot;stringList\&quot;: [\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;    \&quot;string\&quot;\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;  ]\n&quot;</span> +</span><br><span class="line">        <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DragonModel dragonModel = JSONObject.parseObject(oo, DragonModel.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="mock-学习"><a href="#mock-学习" class="headerlink" title="mock 学习"></a>mock 学习</h1><h2 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h2><h3 id="verify"><a href="#verify" class="headerlink" title="verify"></a>verify</h3><p>若没有按希望的执行则会抛异常！</p>
+<blockquote>
+<p>Mockito.verify (mockBean ).someMethod();表示：someMethod方法调用了一次，相当于times(1)<br> Mockito.verify (mockBean, Mockito.times(n) ).someMethod();表示：someMethod方法调用了n次<br> Mockito.verify (mockBean, Mockito.never() ).someMethod();表示：someMethod方法未执行<br> Mockito.verify (mockBean, Mockito. atLeastOnce() ).someMethod();表示：someMethod方法至少执行过一次,相当于atLeast(1)</p>
+</blockquote>
+<h3 id="做测试桩"><a href="#做测试桩" class="headerlink" title="做测试桩"></a>做测试桩</h3><h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSON;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONObject;</span><br><span class="line"><span class="keyword">import</span> org.hamcrest.Matchers;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.MediaType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.mock.web.MockHttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.MockMvc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.MvcResult;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.request.MockMvcRequestBuilders;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.web.servlet.setup.MockMvcBuilders;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.WebApplicationContext;</span><br><span class="line"><span class="keyword">import</span> pan.day.jpa.entity.StudentEntity;</span><br><span class="line"><span class="keyword">import</span> pan.tools.enums.HumanEnum;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试 restful 风格</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RESTful</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebApplicationContext webApplicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在每个测试方法执行之前都初始化MockMvc对象</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setupMockMvc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 尝试测试一个不存在的请求 /user/1</span></span><br><span class="line"><span class="comment">     * 查询单条数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@DisplayName</span> 自定义测试方法展示的名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@DisplayName(&quot;测试根据Id获取User&quot;)</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">askUnWrite</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders</span><br><span class="line">                <span class="comment">// 构造一个get请求</span></span><br><span class="line">                .get(<span class="string">&quot;/student/findOne/1&quot;</span>)</span><br><span class="line">                .header(<span class="string">&quot;Origin&quot;</span>, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">                <span class="comment">// 请求类型 json</span></span><br><span class="line">                .contentType(MediaType.APPLICATION_JSON)</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line">                <span class="comment">// 期待返回的状态码是4XX，因为我们并没有写/user/&#123;id&#125;的get接口</span></span><br><span class="line"><span class="comment">//                .andExpect(MockMvcResultMatchers.status().is4xxClientError());</span></span><br><span class="line"><span class="comment">//                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())</span></span><br><span class="line">                <span class="comment">// $.length() 将content 转成json，判断个数</span></span><br><span class="line">                .andExpect(MockMvcResultMatchers.jsonPath(<span class="string">&quot;$.length()&quot;</span>).value(<span class="number">7</span>))</span><br><span class="line">                .andExpect(MockMvcResultMatchers.jsonPath(<span class="string">&quot;$.name&quot;</span>).value(<span class="string">&quot;pan&quot;</span>))</span><br><span class="line"><span class="comment">//                .andDo(MockMvcResultHandlers.print())</span></span><br><span class="line">                <span class="comment">// 返回结果集</span></span><br><span class="line">                .andReturn();</span><br><span class="line">        MockHttpServletResponse response = mvcResult.getResponse();</span><br><span class="line">        <span class="comment">// 单个断言 过不了的话会出 AssertionError</span></span><br><span class="line">        Assert.assertEquals(<span class="number">200</span>, mvcResult.getResponse().getStatus());</span><br><span class="line">        <span class="comment">// 这里应该是一个application/json</span></span><br><span class="line">        String contentType = response.getContentType();</span><br><span class="line">        <span class="comment">// 转成json对象</span></span><br><span class="line">        JSONObject jsonObject = JSONObject.parseObject(response.getContentAsString());</span><br><span class="line">        System.out.println(contentType);</span><br><span class="line">        Assert.assertThat(jsonObject.get(<span class="string">&quot;name&quot;</span>), Matchers.is(<span class="string">&quot;pan&quot;</span>));</span><br><span class="line">        <span class="comment">// 转成具体对象</span></span><br><span class="line">        StudentEntity studentEntity = JSONObject.parseObject(response.getContentAsString(), StudentEntity.class);</span><br><span class="line">        System.out.println(studentEntity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * post请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postMock</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        StudentEntity studentEntity = <span class="keyword">new</span> StudentEntity();</span><br><span class="line">        studentEntity.setName(<span class="string">&quot;wy&quot;</span>)</span><br><span class="line">                .setAge(<span class="number">22</span>)</span><br><span class="line">                .setStatus(HumanEnum.OK)</span><br><span class="line">                .setCreateTime(<span class="keyword">new</span> Date())</span><br><span class="line">                .setCourseNumber(<span class="string">&quot;classOne&quot;</span>);</span><br><span class="line"></span><br><span class="line">        String jsonString = JSON.toJSONString(studentEntity);</span><br><span class="line">        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders</span><br><span class="line">                        <span class="comment">// MockMvcRequestBuilders.post(&quot;/url&quot;) ： 构造一个post请求</span></span><br><span class="line">                        .post(<span class="string">&quot;/student/save&quot;</span>)</span><br><span class="line">                        <span class="comment">// 可使用此处添加token信息</span></span><br><span class="line">                        .header(<span class="string">&quot;Origin&quot;</span>, <span class="string">&quot;*&quot;</span>)</span><br><span class="line">                        .accept(MediaType.APPLICATION_JSON)</span><br><span class="line">                        <span class="comment">// 传参,因为后端是@RequestBody所以这里直接传json字符串</span></span><br><span class="line">                        .content(jsonString)</span><br><span class="line">                        .contentType(MediaType.APPLICATION_JSON)</span><br><span class="line">                <span class="comment">// 期望</span></span><br><span class="line">        )</span><br><span class="line">                .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">                .andReturn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h1 id="SpringBoot-测试Controller"><a href="#SpringBoot-测试Controller" class="headerlink" title="SpringBoot 测试Controller"></a>SpringBoot 测试Controller</h1><h2 id="MockHttpServlet"><a href="#MockHttpServlet" class="headerlink" title="MockHttpServlet"></a>MockHttpServlet</h2><blockquote>
+<p>实现了 HttpServletRequest HttpServletResponse<br>可以设置请求头，一些属性等，可以模拟接收 HttpServletRequest 来获取一些信息。<br>但是并不能发起一个请求，测试controller</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> MockHttpServletRequest mockHttpServletRequest;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mockHttpServletRequest = <span class="keyword">new</span> MockHttpServletRequest();</span><br><span class="line">        mockHttpServletRequest.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        mockHttpServletResponse = <span class="keyword">new</span> MockHttpServletResponse();</span><br><span class="line">        mockHttpServletRequest.addHeader(<span class="string">&quot;Authorization&quot;</span>, <span class="string">&quot;65734685ef5e4294e87340648e039f91_7u931ed01a2611ea7050c7840ac94150&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// mockHttpServletRequest 就相当于一个HttpServletRequest了</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="集成Web环境方式-Controller"><a href="#集成Web环境方式-Controller" class="headerlink" title="集成Web环境方式 Controller"></a>集成Web环境方式 Controller</h2><p><code>MockMvcBuilders.webAppContextSetup(WebApplicationContext context)：将会从该上下文获取相应的控制器并得到相应的MockMvc</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebApplicationContext webApplicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * mock 测试</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * DefaultMockMvcBuilder有一个build方法，该方法产生MockMvc</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMock</span><span class="params">()</span></span>&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();</span><br><span class="line"><span class="comment">//        DefaultMockMvcBuilder defaultMockMvcBuilder = MockMvcBuilders.webAppContextSetup(webApplicationContext);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="独立测试方法"><a href="#独立测试方法" class="headerlink" title="独立测试方法"></a>独立测试方法</h2><p>MockMvcBuilders.standaloneSetup(Object… controllers)；通过参数指定一组控制器，这样就不需要从上下文获取了；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 独立方法</span></span><br><span class="line"><span class="comment"> * StandaloneMockMvcBuilder也有一个 build() 方法</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">standMock</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    mockMvc = MockMvcBuilders.standaloneSetup(<span class="keyword">new</span> UserController()).build();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-mockMvc"><a href="#使用-mockMvc" class="headerlink" title="使用 mockMvc"></a>使用 mockMvc</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// perform 方法</span></span><br><span class="line">（ get(<span class="string">&quot;/users&quot;</span>) 或 post(<span class="string">&quot;/add&quot;</span>) ）</span><br><span class="line">get(<span class="string">&quot;/users&quot;</span>).accept(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line"></span><br><span class="line">post(<span class="string">&quot;/add&quot;</span>).contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(user)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"></span><br><span class="line">mockMvc.perform(get(<span class="string">&quot;/users&quot;</span>).accept(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">    .andExpect(status().isOk())</span><br><span class="line">    .andDo(print())</span><br><span class="line">    .andExpect(content().string(equalTo(<span class="string">&quot;[]&quot;</span>)));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mockMvc.perform(post(<span class="string">&quot;/add&quot;</span>).contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(user)))</span><br><span class="line">            .andExpect(status().isOk())</span><br><span class="line">			.andDo(print())</span><br><span class="line">			.andReturn().getResponse().getContentAsString();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在controller 层发现 没有注入service。当使用standaloneSetup时。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>使用 web 集成方式 测试controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();</span><br><span class="line"></span><br><span class="line">但是这样会报 java.lang.IllegalArgumentException: Header value must not be <span class="keyword">null</span></span><br><span class="line"></span><br><span class="line">参考：https:<span class="comment">//stackoverflow.com/questions/46405193/spring-using-mockmvc-test-with-cors-filter</span></span><br><span class="line"></span><br><span class="line">所以还得加 .header(<span class="string">&quot;Origin&quot;</span>,<span class="string">&quot;*&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ConsultationVo consultationVo = <span class="keyword">new</span> ConsultationVo();</span><br><span class="line">    consultationVo.setOperatorId(<span class="string">&quot;123456789&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//        mockMvc = MockMvcBuilders.standaloneSetup(new ConsultationController()).build();</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        mockMvc.perform(</span><br><span class="line">                MockMvcRequestBuilders.post(<span class="string">&quot;/consultations/getAll&quot;</span>)</span><br><span class="line">                        .header(<span class="string">&quot;Origin&quot;</span>,<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                        .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)</span><br><span class="line">                        <span class="comment">//                .param(&quot;name&quot;,&quot;hi&quot;)</span></span><br><span class="line">                        .content(JSON.toJSONString(consultationVo))</span><br><span class="line">                        .contentType(MediaType.APPLICATION_JSON)</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line"><span class="comment">//                    .andExpect(MockMvcResultMatchers.status().isOk())</span></span><br><span class="line">                .andDo(MockMvcResultHandlers.print())</span><br><span class="line">        ;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">结果会出现在打印中的 body 里</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p>不大理解<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61342833">https://zhuanlan.zhihu.com/p/61342833</a></p>
+</blockquote>
+<blockquote>
+<p>打印结果 会清晰一些<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98074553">https://zhuanlan.zhihu.com/p/98074553</a></p>
+</blockquote>
+<h2 id="MockMvc"><a href="#MockMvc" class="headerlink" title="MockMvc"></a>MockMvc</h2><p>文档：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/5.2.2.RELEASE/spring-framework-reference/testing.html#testing-introduction">https://docs.spring.io/spring/docs/5.2.2.RELEASE/spring-framework-reference/testing.html#testing-introduction</a></p>
+<blockquote>
+<p>MockMvcBuilder 来产生 MockMvc :有以下两种方式<br>StandaloneMockMvcBuilder和DefaultMockMvcBuilder，分别对应两种测试方式，即独立安装和集成Web环境测试（此种方式并不会集成真正的web环境，而是通过相应的Mock API进行模拟测试，无须启动服务器）。</p>
+</blockquote>
+<p>一把来说：用静态工厂MockMvcBuilders 即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockMvcBuilders</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Build a &#123;<span class="doctag">@link</span> MockMvc&#125; instance using the given, fully initialized</span></span><br><span class="line"><span class="comment">	 * (i.e., &lt;em&gt;refreshed&lt;/em&gt;) &#123;<span class="doctag">@link</span> WebApplicationContext&#125;.</span></span><br><span class="line"><span class="comment">	 * &lt;p&gt;The &#123;<span class="doctag">@link</span> org.springframework.web.servlet.DispatcherServlet DispatcherServlet&#125;</span></span><br><span class="line"><span class="comment">	 * will use the context to discover Spring MVC infrastructure and application</span></span><br><span class="line"><span class="comment">	 * controllers in it. The context must have been configured with a</span></span><br><span class="line"><span class="comment">	 * &#123;<span class="doctag">@link</span> javax.servlet.ServletContext ServletContext&#125;.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DefaultMockMvcBuilder <span class="title">webAppContextSetup</span><span class="params">(WebApplicationContext context)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> DefaultMockMvcBuilder(context);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Build a &#123;<span class="doctag">@link</span> MockMvc&#125; instance by registering one or more</span></span><br><span class="line"><span class="comment">	 * &#123;<span class="doctag">@code</span> <span class="doctag">@Controller</span>&#125; instances and configuring Spring MVC infrastructure</span></span><br><span class="line"><span class="comment">	 * programmatically.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * &lt;p&gt;This allows full control over the instantiation and initialization of</span></span><br><span class="line"><span class="comment">	 * controllers and their dependencies, similar to plain unit tests while</span></span><br><span class="line"><span class="comment">	 * also making it possible to test one controller at a time.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * &lt;p&gt;When this builder is used, the minimum infrastructure required by the</span></span><br><span class="line"><span class="comment">	 * &#123;<span class="doctag">@link</span> org.springframework.web.servlet.DispatcherServlet DispatcherServlet&#125;</span></span><br><span class="line"><span class="comment">	 * to serve requests with annotated controllers is created automatically</span></span><br><span class="line"><span class="comment">	 * and can be customized, resulting in configuration that is equivalent to</span></span><br><span class="line"><span class="comment">	 * what MVC Java configuration provides except using builder-style methods.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * &lt;p&gt;If the Spring MVC configuration of an application is relatively</span></span><br><span class="line"><span class="comment">	 * straight-forward &amp;mdash; for example, when using the MVC namespace in</span></span><br><span class="line"><span class="comment">	 * XML or MVC Java config &amp;mdash; then using this builder might be a good</span></span><br><span class="line"><span class="comment">	 * option for testing a majority of controllers. In such cases, a much</span></span><br><span class="line"><span class="comment">	 * smaller number of tests can be used to focus on testing and verifying</span></span><br><span class="line"><span class="comment">	 * the actual Spring MVC configuration.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> controllers one or more &#123;<span class="doctag">@code</span> <span class="doctag">@Controller</span>&#125; instances to test</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StandaloneMockMvcBuilder <span class="title">standaloneSetup</span><span class="params">(Object... controllers)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> StandaloneMockMvcBuilder(controllers);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div>
+      
+        
+      
+</div>
+          <div class="post-tags">
+              <a href="/tags/springBoot/" rel="tag"># springBoot</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/21/SpringBoot/" rel="prev" title="SpringBoot">
+                  <i class="fa fa-chevron-left"></i> SpringBoot
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/03/%E6%B3%A8%E5%85%A5%E6%B3%A8%E8%A7%A3/" rel="next" title="注入注解">
+                  注入注解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Micheal Pan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+<div class="powered-by">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+        本站访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_pv">
+        本站访问量<span id="busuanzi_value_site_pv"></span>
+    </span>
+</div>
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"y480IKFCxDOAxLF6uhUTuOYx-gzGzoHsz","appKey":"W6c4eVp3NYCpr07YjSFykNyV","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/04/02/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/",
+      serverURLs: "https://y480ikfc.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
