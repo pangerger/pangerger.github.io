@@ -108,26 +108,6 @@
       </tags>
   </entry>
   <entry>
-    <title>mybatis</title>
-    <url>/2020/05/28/mybatis/</url>
-    <content><![CDATA[<p>使用 mybatis 常改的地方  </p>
-<a id="more"></a>
-
-<h1 id="常用法"><a href="#常用法" class="headerlink" title="常用法"></a>常用法</h1><h2 id="集合-foreach"><a href="#集合-foreach" class="headerlink" title="集合 foreach"></a>集合 foreach</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">xml 为：普通in用法</span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;record.typeList != null and record.typeList.size()&gt;0 &quot;</span>&gt;</span></span><br><span class="line">    AND type in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;record.typeList&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">item</span>=<span class="string">&quot;type&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">        #&#123;type&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">and type in(1,2,3)</span><br><span class="line"></span><br><span class="line">==============================</span><br><span class="line">like foreach:</span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;record.typeList != null and record.typeList.size()&gt;0 &quot;</span>&gt;</span></span><br><span class="line">    AND </span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;record.typeList&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">item</span>=<span class="string">&quot;type&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span>&gt;</span></span><br><span class="line">      type like concat(&#x27;%&#x27;,#&#123;type&#125;,&#x27;%&#x27;) </span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">sql:</span><br><span class="line">and (type like concat(&#x27;%&#x27;,1,&#x27;%&#x27;) or type like concat(&#x27;%&#x27;,2,&#x27;%&#x27;) or type like concat(&#x27;%&#x27;,3,&#x27;%&#x27;) )</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><blockquote>
-<p>参数 父类 子类</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">》Food 为 父类 , Apple 为子类，子类多了一个属性叫 type</span><br><span class="line"></span><br><span class="line"><span class="comment">// mapper 接口里 </span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询记录列表</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> record</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">List&lt;Food&gt; <span class="title">selectByType</span><span class="params">(<span class="meta">@Param(&quot;record&quot;)</span> Food record,</span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="meta">@Param(&quot;pageBegin&quot;)</span> <span class="keyword">int</span> pageBegin,</span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="meta">@Param(&quot;pageSize&quot;)</span> <span class="keyword">int</span> pageSize)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service 层: 显然这是没问题的 接口要一个父类，使用时给子类</span></span><br><span class="line">Apple apple = <span class="keyword">new</span> Apple;</span><br><span class="line">apple.setType(<span class="number">1</span>);</span><br><span class="line">List&lt;Food&gt; foods = selectByType(apple,-<span class="number">1</span>,-<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">问题来了：：：：：=============》》》》》》》》》</span><br><span class="line"><span class="comment">// xml 里 record.type 为啥可以呢? 当然 我们知道 此时 record 是一个 Apple! 但它的原理是啥？？？</span></span><br><span class="line">&lt;<span class="keyword">if</span> test=<span class="string">&quot;record.type != null and record.type!=&#x27;&#x27; &quot;</span>&gt;</span><br><span class="line">    id = #&#123;record.type&#125;</span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2020/10/14/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -146,6 +126,26 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>mybatis</title>
+    <url>/2020/05/28/mybatis/</url>
+    <content><![CDATA[<p>使用 mybatis 常改的地方  </p>
+<a id="more"></a>
+
+<h1 id="常用法"><a href="#常用法" class="headerlink" title="常用法"></a>常用法</h1><h2 id="集合-foreach"><a href="#集合-foreach" class="headerlink" title="集合 foreach"></a>集合 foreach</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">xml 为：普通in用法</span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;record.typeList != null and record.typeList.size()&gt;0 &quot;</span>&gt;</span></span><br><span class="line">    AND type in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;record.typeList&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">item</span>=<span class="string">&quot;type&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">        #&#123;type&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">and type in(1,2,3)</span><br><span class="line"></span><br><span class="line">==============================</span><br><span class="line">like foreach:</span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;record.typeList != null and record.typeList.size()&gt;0 &quot;</span>&gt;</span></span><br><span class="line">    AND </span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;record.typeList&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">item</span>=<span class="string">&quot;type&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span>&gt;</span></span><br><span class="line">      type like concat(&#x27;%&#x27;,#&#123;type&#125;,&#x27;%&#x27;) </span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">sql:</span><br><span class="line">and (type like concat(&#x27;%&#x27;,1,&#x27;%&#x27;) or type like concat(&#x27;%&#x27;,2,&#x27;%&#x27;) or type like concat(&#x27;%&#x27;,3,&#x27;%&#x27;) )</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h1><blockquote>
+<p>参数 父类 子类</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">》Food 为 父类 , Apple 为子类，子类多了一个属性叫 type</span><br><span class="line"></span><br><span class="line"><span class="comment">// mapper 接口里 </span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询记录列表</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> record</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">List&lt;Food&gt; <span class="title">selectByType</span><span class="params">(<span class="meta">@Param(&quot;record&quot;)</span> Food record,</span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="meta">@Param(&quot;pageBegin&quot;)</span> <span class="keyword">int</span> pageBegin,</span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="meta">@Param(&quot;pageSize&quot;)</span> <span class="keyword">int</span> pageSize)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service 层: 显然这是没问题的 接口要一个父类，使用时给子类</span></span><br><span class="line">Apple apple = <span class="keyword">new</span> Apple;</span><br><span class="line">apple.setType(<span class="number">1</span>);</span><br><span class="line">List&lt;Food&gt; foods = selectByType(apple,-<span class="number">1</span>,-<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">问题来了：：：：：=============》》》》》》》》》</span><br><span class="line"><span class="comment">// xml 里 record.type 为啥可以呢? 当然 我们知道 此时 record 是一个 Apple! 但它的原理是啥？？？</span></span><br><span class="line">&lt;<span class="keyword">if</span> test=<span class="string">&quot;record.type != null and record.type!=&#x27;&#x27; &quot;</span>&gt;</span><br><span class="line">    id = #&#123;record.type&#125;</span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>mybatis</tag>
+      </tags>
   </entry>
   <entry>
     <title>单元测试</title>
@@ -205,41 +205,26 @@
       </tags>
   </entry>
   <entry>
-    <title>如何阅读一本书</title>
-    <url>/2018/11/15/%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6/</url>
-    <content><![CDATA[<p>How to read a book!</p>
+    <title>皮肤性病学</title>
+    <url>/2019/02/10/%E7%9A%AE%E8%82%A4%E6%80%A7%E7%97%85%E5%AD%A6/</url>
+    <content><![CDATA[<p><a href="https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013">https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013</a></p>
+<p>来自中国大学mooc</p>
 <a id="more"></a>
 
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>第一版 在 1940年<br>​    莫提默-J-艾德勒</p>
-<p>第二版 在 1972年<br>​    莫提默-J-艾德勒<br>​    查尔斯-范多伦</p>
-<h1 id="阅读的层次"><a href="#阅读的层次" class="headerlink" title="阅读的层次"></a>阅读的层次</h1><h2 id="阅读的活力与艺术"><a href="#阅读的活力与艺术" class="headerlink" title="阅读的活力与艺术"></a>阅读的活力与艺术</h2><h3 id="需要的是主动阅读"><a href="#需要的是主动阅读" class="headerlink" title="需要的是主动阅读"></a>需要的是主动阅读</h3><p>在阅读世界里的探索能力就更强一些</p>
-<h3 id="阅读的目标：为获得资讯而读，以及为求得理解而读"><a href="#阅读的目标：为获得资讯而读，以及为求得理解而读" class="headerlink" title="阅读的目标：为获得资讯而读，以及为求得理解而读"></a>阅读的目标：为获得资讯而读，以及为求得理解而读</h3><blockquote>
-<p>蒙田说：“初学者的无知在于未学，而学者的无知在于学后”<br>读错了许多书，—–亚历山大-蒲伯（Alexander Pope)说这种人是书呆子，无知的阅读者<br>希腊人则称这种人:  半瓶醋(Sophomores)</p>
-</blockquote>
-<h3 id="一种错误：都得多不一定读得好"><a href="#一种错误：都得多不一定读得好" class="headerlink" title="一种错误：都得多不一定读得好"></a>一种错误：都得多不一定读得好</h3><h2 id="阅读的层次-1"><a href="#阅读的层次-1" class="headerlink" title="阅读的层次"></a>阅读的层次</h2><p>阅读的规则是：努力越多，效果越好</p>
-<h3 id="四种层次的阅读"><a href="#四种层次的阅读" class="headerlink" title="四种层次的阅读"></a>四种层次的阅读</h3><p>渐进的，高层包含了低层</p>
+
+
+<h1 id="皮肤的结构和功能"><a href="#皮肤的结构和功能" class="headerlink" title="皮肤的结构和功能"></a>皮肤的结构和功能</h1><h2 id="皮肤的一般特点"><a href="#皮肤的一般特点" class="headerlink" title="皮肤的一般特点"></a>皮肤的一般特点</h2><p>眼睑：最薄</p>
+<p>脚后跟：最厚</p>
+<h3 id="皮肤的层次"><a href="#皮肤的层次" class="headerlink" title="皮肤的层次"></a>皮肤的层次</h3><p>三层：</p>
 <ul>
-<li>基础阅读 elementary reading</li>
+<li>表皮层</li>
+<li>真皮层</li>
+<li>皮下脂肪层</li>
 </ul>
-<p>识字，大部分速度课程都是这个层次的工作。</p>
-<p>这个句子在说什么？</p>
-<ul>
-<li>检视阅读 inspectional reading<br>常被忽略的层次</li>
-</ul>
-<p>强调时间，抓重点<br>系统化的略读</p>
-<p>这本书在谈什么？</p>
-<ul>
-<li>分析阅读 analytical reading</li>
-</ul>
-<p>全盘的阅读，完整的阅读，专注的活动，咀嚼与消化一本书，用的时间多</p>
-<ul>
-<li>主题阅读 syntopical reading</li>
-</ul>
-<p>也叫比较阅读</p>
-<p>书所谈的主题</p>
-<h2 id="阅读的第一个层次，基础阅读"><a href="#阅读的第一个层次，基础阅读" class="headerlink" title="阅读的第一个层次，基础阅读"></a>阅读的第一个层次，基础阅读</h2>]]></content>
+<p>皮肤附属器</p>
+]]></content>
       <tags>
-        <tag>读书笔记</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -295,26 +280,41 @@
       </tags>
   </entry>
   <entry>
-    <title>皮肤性病学</title>
-    <url>/2019/02/10/%E7%9A%AE%E8%82%A4%E6%80%A7%E7%97%85%E5%AD%A6/</url>
-    <content><![CDATA[<p><a href="https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013">https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013</a></p>
-<p>来自中国大学mooc</p>
+    <title>如何阅读一本书</title>
+    <url>/2018/11/15/%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6/</url>
+    <content><![CDATA[<p>How to read a book!</p>
 <a id="more"></a>
 
-
-
-<h1 id="皮肤的结构和功能"><a href="#皮肤的结构和功能" class="headerlink" title="皮肤的结构和功能"></a>皮肤的结构和功能</h1><h2 id="皮肤的一般特点"><a href="#皮肤的一般特点" class="headerlink" title="皮肤的一般特点"></a>皮肤的一般特点</h2><p>眼睑：最薄</p>
-<p>脚后跟：最厚</p>
-<h3 id="皮肤的层次"><a href="#皮肤的层次" class="headerlink" title="皮肤的层次"></a>皮肤的层次</h3><p>三层：</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>第一版 在 1940年<br>​    莫提默-J-艾德勒</p>
+<p>第二版 在 1972年<br>​    莫提默-J-艾德勒<br>​    查尔斯-范多伦</p>
+<h1 id="阅读的层次"><a href="#阅读的层次" class="headerlink" title="阅读的层次"></a>阅读的层次</h1><h2 id="阅读的活力与艺术"><a href="#阅读的活力与艺术" class="headerlink" title="阅读的活力与艺术"></a>阅读的活力与艺术</h2><h3 id="需要的是主动阅读"><a href="#需要的是主动阅读" class="headerlink" title="需要的是主动阅读"></a>需要的是主动阅读</h3><p>在阅读世界里的探索能力就更强一些</p>
+<h3 id="阅读的目标：为获得资讯而读，以及为求得理解而读"><a href="#阅读的目标：为获得资讯而读，以及为求得理解而读" class="headerlink" title="阅读的目标：为获得资讯而读，以及为求得理解而读"></a>阅读的目标：为获得资讯而读，以及为求得理解而读</h3><blockquote>
+<p>蒙田说：“初学者的无知在于未学，而学者的无知在于学后”<br>读错了许多书，—–亚历山大-蒲伯（Alexander Pope)说这种人是书呆子，无知的阅读者<br>希腊人则称这种人:  半瓶醋(Sophomores)</p>
+</blockquote>
+<h3 id="一种错误：都得多不一定读得好"><a href="#一种错误：都得多不一定读得好" class="headerlink" title="一种错误：都得多不一定读得好"></a>一种错误：都得多不一定读得好</h3><h2 id="阅读的层次-1"><a href="#阅读的层次-1" class="headerlink" title="阅读的层次"></a>阅读的层次</h2><p>阅读的规则是：努力越多，效果越好</p>
+<h3 id="四种层次的阅读"><a href="#四种层次的阅读" class="headerlink" title="四种层次的阅读"></a>四种层次的阅读</h3><p>渐进的，高层包含了低层</p>
 <ul>
-<li>表皮层</li>
-<li>真皮层</li>
-<li>皮下脂肪层</li>
+<li>基础阅读 elementary reading</li>
 </ul>
-<p>皮肤附属器</p>
-]]></content>
+<p>识字，大部分速度课程都是这个层次的工作。</p>
+<p>这个句子在说什么？</p>
+<ul>
+<li>检视阅读 inspectional reading<br>常被忽略的层次</li>
+</ul>
+<p>强调时间，抓重点<br>系统化的略读</p>
+<p>这本书在谈什么？</p>
+<ul>
+<li>分析阅读 analytical reading</li>
+</ul>
+<p>全盘的阅读，完整的阅读，专注的活动，咀嚼与消化一本书，用的时间多</p>
+<ul>
+<li>主题阅读 syntopical reading</li>
+</ul>
+<p>也叫比较阅读</p>
+<p>书所谈的主题</p>
+<h2 id="阅读的第一个层次，基础阅读"><a href="#阅读的第一个层次，基础阅读" class="headerlink" title="阅读的第一个层次，基础阅读"></a>阅读的第一个层次，基础阅读</h2>]]></content>
       <tags>
-        <tag>生活</tag>
+        <tag>读书笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -484,6 +484,37 @@
       </tags>
   </entry>
   <entry>
+    <title>虚拟现实时代——读后感</title>
+    <url>/2018/05/01/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E%E6%97%B6%E4%BB%A3%E2%80%94%E2%80%94%E8%AF%BB%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<p>机械工业出版社<br>《虚拟现实时代》<br>王莉，杨明辉著</p>
+<a id="more"></a>
+
+<h1 id="大事迹"><a href="#大事迹" class="headerlink" title="大事迹"></a>大事迹</h1><p>Facebook斥资20亿收购Oculus VR</p>
+<p>VR:  借助计算机及传感器技术生成一个三维环境，创建一种暂新得人机交互状态。<br>AR：让现实世界中不存在得物体和现实世界得物体融合在一起得交互</p>
+<p>统称虚拟现实类技术</p>
+<h1 id="VR-AR"><a href="#VR-AR" class="headerlink" title="VR,AR"></a>VR,AR</h1><p>VR:  Virtual Reality  得缩写  于20世纪六十年代首次被提出<br>VR：Argumented Reality  增强现实</p>
+<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>概念：来于小说家  Stanley G.Weinbaum   1935年<br>《Pygmalion’s Spectacles》——虚拟现实眼镜。。。</p>
+<p>1957年：<br>电影摄影师 Morton Heilig 发明了名为Sensorama得虚拟现实仿真模拟器。。。</p>
+<p>1968年：  头戴式显示器出现<br>Ivan Sutherland———–》计算机科学家<br>“达摩克利斯之剑”<br>。。。。。<br>。。。。。。。<br>。。。。</p>
+<h1 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h1><p>VR眩晕与晕船晕车没太大区别—》人耳朵里的前庭系统所感受到的运动状态和视觉系统不一致，就会在大脑里打架。。你就感受到晕晕的了</p>
+<h1 id="人机交互的三个革命性历程"><a href="#人机交互的三个革命性历程" class="headerlink" title="人机交互的三个革命性历程"></a>人机交互的三个革命性历程</h1><ul>
+<li>鼠标</li>
+<li>多点触控</li>
+<li>体感技术</li>
+</ul>
+<h1 id="动作捕捉"><a href="#动作捕捉" class="headerlink" title="动作捕捉"></a>动作捕捉</h1><ul>
+<li>光学式动作捕捉：通过对目标上特定光点的监视和跟踪来完成运动捕捉的任务。</li>
+<li>惯性导航式动作捕捉： 在运动物体的重要节点佩戴集成加速计，陀螺仪和磁力计等惯性传感设备。。。。</li>
+<li>手势跟踪</li>
+<li>眼球跟踪</li>
+</ul>
+<h1 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h1><p>谷歌： cardboard</p>
+]]></content>
+      <tags>
+        <tag>阅读</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机_兴趣小知识</title>
     <url>/2018/06/06/%E8%AE%A1%E7%AE%97%E6%9C%BA-%E5%85%B4%E8%B6%A3%E5%B0%8F%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<p>碰到的一些小东西</p>
@@ -565,37 +596,6 @@
 ]]></content>
       <tags>
         <tag>计算机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>虚拟现实时代——读后感</title>
-    <url>/2018/05/01/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E%E6%97%B6%E4%BB%A3%E2%80%94%E2%80%94%E8%AF%BB%E5%90%8E%E6%84%9F/</url>
-    <content><![CDATA[<p>机械工业出版社<br>《虚拟现实时代》<br>王莉，杨明辉著</p>
-<a id="more"></a>
-
-<h1 id="大事迹"><a href="#大事迹" class="headerlink" title="大事迹"></a>大事迹</h1><p>Facebook斥资20亿收购Oculus VR</p>
-<p>VR:  借助计算机及传感器技术生成一个三维环境，创建一种暂新得人机交互状态。<br>AR：让现实世界中不存在得物体和现实世界得物体融合在一起得交互</p>
-<p>统称虚拟现实类技术</p>
-<h1 id="VR-AR"><a href="#VR-AR" class="headerlink" title="VR,AR"></a>VR,AR</h1><p>VR:  Virtual Reality  得缩写  于20世纪六十年代首次被提出<br>VR：Argumented Reality  增强现实</p>
-<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>概念：来于小说家  Stanley G.Weinbaum   1935年<br>《Pygmalion’s Spectacles》——虚拟现实眼镜。。。</p>
-<p>1957年：<br>电影摄影师 Morton Heilig 发明了名为Sensorama得虚拟现实仿真模拟器。。。</p>
-<p>1968年：  头戴式显示器出现<br>Ivan Sutherland———–》计算机科学家<br>“达摩克利斯之剑”<br>。。。。。<br>。。。。。。。<br>。。。。</p>
-<h1 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h1><p>VR眩晕与晕船晕车没太大区别—》人耳朵里的前庭系统所感受到的运动状态和视觉系统不一致，就会在大脑里打架。。你就感受到晕晕的了</p>
-<h1 id="人机交互的三个革命性历程"><a href="#人机交互的三个革命性历程" class="headerlink" title="人机交互的三个革命性历程"></a>人机交互的三个革命性历程</h1><ul>
-<li>鼠标</li>
-<li>多点触控</li>
-<li>体感技术</li>
-</ul>
-<h1 id="动作捕捉"><a href="#动作捕捉" class="headerlink" title="动作捕捉"></a>动作捕捉</h1><ul>
-<li>光学式动作捕捉：通过对目标上特定光点的监视和跟踪来完成运动捕捉的任务。</li>
-<li>惯性导航式动作捕捉： 在运动物体的重要节点佩戴集成加速计，陀螺仪和磁力计等惯性传感设备。。。。</li>
-<li>手势跟踪</li>
-<li>眼球跟踪</li>
-</ul>
-<h1 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h1><p>谷歌： cardboard</p>
-]]></content>
-      <tags>
-        <tag>阅读</tag>
       </tags>
   </entry>
   <entry>
