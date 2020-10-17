@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/10/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h1 id="ok-你好"><a href="#ok-你好" class="headerlink" title="ok 你好"></a>ok 你好</h1><h2 id="Quick-Start-你好"><a href="#Quick-Start-你好" class="headerlink" title="Quick Start 你好"></a>Quick Start 你好</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="hello-可"><a href="#hello-可" class="headerlink" title="hello 可"></a>hello 可</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Flux&lt;RouteDefinition&gt; <span class="title">getRouteDefinitions</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    DiscoveryLocatorProperties properties = getProperties();</span><br><span class="line"></span><br><span class="line">    SpelExpressionParser parser = <span class="keyword">new</span> SpelExpressionParser();</span><br><span class="line">    Expression includeExpr = parser.parseExpression(properties.getIncludeExpression());</span><br><span class="line">    Expression urlExpr = parser.parseExpression(properties.getUrlExpression());</span><br><span class="line"></span><br><span class="line">    Predicate&lt;ServiceInstance&gt; includePredicate;</span><br><span class="line">    <span class="keyword">if</span> (isIncludeAllExpression(properties.getIncludeExpression())) &#123;</span><br><span class="line">        <span class="comment">// 包含全部</span></span><br><span class="line">        includePredicate = instance -&gt; <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        includePredicate = instance -&gt; &#123;</span><br><span class="line">            Boolean include = includeExpr.getValue(evaluationContext, instance, Boolean.class);</span><br><span class="line">            <span class="keyword">if</span> (include == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> include.booleanValue();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>SpringBoot</title>
     <url>/2019/07/21/SpringBoot/</url>
     <content><![CDATA[<p>SpringBoot in learning</p>
@@ -146,6 +126,26 @@
       <tags>
         <tag>mybatis</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/10/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h1 id="ok-你好"><a href="#ok-你好" class="headerlink" title="ok 你好"></a>ok 你好</h1><h2 id="Quick-Start-你好"><a href="#Quick-Start-你好" class="headerlink" title="Quick Start 你好"></a>Quick Start 你好</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="hello-可"><a href="#hello-可" class="headerlink" title="hello 可"></a>hello 可</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Flux&lt;RouteDefinition&gt; <span class="title">getRouteDefinitions</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    DiscoveryLocatorProperties properties = getProperties();</span><br><span class="line"></span><br><span class="line">    SpelExpressionParser parser = <span class="keyword">new</span> SpelExpressionParser();</span><br><span class="line">    Expression includeExpr = parser.parseExpression(properties.getIncludeExpression());</span><br><span class="line">    Expression urlExpr = parser.parseExpression(properties.getUrlExpression());</span><br><span class="line"></span><br><span class="line">    Predicate&lt;ServiceInstance&gt; includePredicate;</span><br><span class="line">    <span class="keyword">if</span> (isIncludeAllExpression(properties.getIncludeExpression())) &#123;</span><br><span class="line">        <span class="comment">// 包含全部</span></span><br><span class="line">        includePredicate = instance -&gt; <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        includePredicate = instance -&gt; &#123;</span><br><span class="line">            Boolean include = includeExpr.getValue(evaluationContext, instance, Boolean.class);</span><br><span class="line">            <span class="keyword">if</span> (include == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> include.booleanValue();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>单元测试</title>
@@ -292,6 +292,29 @@
 ]]></content>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>皮肤性病学</title>
+    <url>/2019/02/10/%E7%9A%AE%E8%82%A4%E6%80%A7%E7%97%85%E5%AD%A6/</url>
+    <content><![CDATA[<p><a href="https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013">https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013</a></p>
+<p>来自中国大学mooc</p>
+<a id="more"></a>
+
+
+
+<h1 id="皮肤的结构和功能"><a href="#皮肤的结构和功能" class="headerlink" title="皮肤的结构和功能"></a>皮肤的结构和功能</h1><h2 id="皮肤的一般特点"><a href="#皮肤的一般特点" class="headerlink" title="皮肤的一般特点"></a>皮肤的一般特点</h2><p>眼睑：最薄</p>
+<p>脚后跟：最厚</p>
+<h3 id="皮肤的层次"><a href="#皮肤的层次" class="headerlink" title="皮肤的层次"></a>皮肤的层次</h3><p>三层：</p>
+<ul>
+<li>表皮层</li>
+<li>真皮层</li>
+<li>皮下脂肪层</li>
+</ul>
+<p>皮肤附属器</p>
+]]></content>
+      <tags>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -444,29 +467,6 @@
       </tags>
   </entry>
   <entry>
-    <title>皮肤性病学</title>
-    <url>/2019/02/10/%E7%9A%AE%E8%82%A4%E6%80%A7%E7%97%85%E5%AD%A6/</url>
-    <content><![CDATA[<p><a href="https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013">https://www.icourse163.org/learn/XJTU-1002982009?tid=1003185007#/learn/content?type=detail&amp;id=1007434013</a></p>
-<p>来自中国大学mooc</p>
-<a id="more"></a>
-
-
-
-<h1 id="皮肤的结构和功能"><a href="#皮肤的结构和功能" class="headerlink" title="皮肤的结构和功能"></a>皮肤的结构和功能</h1><h2 id="皮肤的一般特点"><a href="#皮肤的一般特点" class="headerlink" title="皮肤的一般特点"></a>皮肤的一般特点</h2><p>眼睑：最薄</p>
-<p>脚后跟：最厚</p>
-<h3 id="皮肤的层次"><a href="#皮肤的层次" class="headerlink" title="皮肤的层次"></a>皮肤的层次</h3><p>三层：</p>
-<ul>
-<li>表皮层</li>
-<li>真皮层</li>
-<li>皮下脂肪层</li>
-</ul>
-<p>皮肤附属器</p>
-]]></content>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>网络资源</title>
     <url>/2020/04/04/%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90/</url>
     <content><![CDATA[<p>网络学习资源</p>
@@ -481,37 +481,6 @@
 ]]></content>
       <tags>
         <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>虚拟现实时代——读后感</title>
-    <url>/2018/05/01/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E%E6%97%B6%E4%BB%A3%E2%80%94%E2%80%94%E8%AF%BB%E5%90%8E%E6%84%9F/</url>
-    <content><![CDATA[<p>机械工业出版社<br>《虚拟现实时代》<br>王莉，杨明辉著</p>
-<a id="more"></a>
-
-<h1 id="大事迹"><a href="#大事迹" class="headerlink" title="大事迹"></a>大事迹</h1><p>Facebook斥资20亿收购Oculus VR</p>
-<p>VR:  借助计算机及传感器技术生成一个三维环境，创建一种暂新得人机交互状态。<br>AR：让现实世界中不存在得物体和现实世界得物体融合在一起得交互</p>
-<p>统称虚拟现实类技术</p>
-<h1 id="VR-AR"><a href="#VR-AR" class="headerlink" title="VR,AR"></a>VR,AR</h1><p>VR:  Virtual Reality  得缩写  于20世纪六十年代首次被提出<br>VR：Argumented Reality  增强现实</p>
-<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>概念：来于小说家  Stanley G.Weinbaum   1935年<br>《Pygmalion’s Spectacles》——虚拟现实眼镜。。。</p>
-<p>1957年：<br>电影摄影师 Morton Heilig 发明了名为Sensorama得虚拟现实仿真模拟器。。。</p>
-<p>1968年：  头戴式显示器出现<br>Ivan Sutherland———–》计算机科学家<br>“达摩克利斯之剑”<br>。。。。。<br>。。。。。。。<br>。。。。</p>
-<h1 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h1><p>VR眩晕与晕船晕车没太大区别—》人耳朵里的前庭系统所感受到的运动状态和视觉系统不一致，就会在大脑里打架。。你就感受到晕晕的了</p>
-<h1 id="人机交互的三个革命性历程"><a href="#人机交互的三个革命性历程" class="headerlink" title="人机交互的三个革命性历程"></a>人机交互的三个革命性历程</h1><ul>
-<li>鼠标</li>
-<li>多点触控</li>
-<li>体感技术</li>
-</ul>
-<h1 id="动作捕捉"><a href="#动作捕捉" class="headerlink" title="动作捕捉"></a>动作捕捉</h1><ul>
-<li>光学式动作捕捉：通过对目标上特定光点的监视和跟踪来完成运动捕捉的任务。</li>
-<li>惯性导航式动作捕捉： 在运动物体的重要节点佩戴集成加速计，陀螺仪和磁力计等惯性传感设备。。。。</li>
-<li>手势跟踪</li>
-<li>眼球跟踪</li>
-</ul>
-<h1 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h1><p>谷歌： cardboard</p>
-]]></content>
-      <tags>
-        <tag>阅读</tag>
       </tags>
   </entry>
   <entry>
@@ -596,6 +565,37 @@
 ]]></content>
       <tags>
         <tag>计算机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚拟现实时代——读后感</title>
+    <url>/2018/05/01/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E%E6%97%B6%E4%BB%A3%E2%80%94%E2%80%94%E8%AF%BB%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<p>机械工业出版社<br>《虚拟现实时代》<br>王莉，杨明辉著</p>
+<a id="more"></a>
+
+<h1 id="大事迹"><a href="#大事迹" class="headerlink" title="大事迹"></a>大事迹</h1><p>Facebook斥资20亿收购Oculus VR</p>
+<p>VR:  借助计算机及传感器技术生成一个三维环境，创建一种暂新得人机交互状态。<br>AR：让现实世界中不存在得物体和现实世界得物体融合在一起得交互</p>
+<p>统称虚拟现实类技术</p>
+<h1 id="VR-AR"><a href="#VR-AR" class="headerlink" title="VR,AR"></a>VR,AR</h1><p>VR:  Virtual Reality  得缩写  于20世纪六十年代首次被提出<br>VR：Argumented Reality  增强现实</p>
+<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>概念：来于小说家  Stanley G.Weinbaum   1935年<br>《Pygmalion’s Spectacles》——虚拟现实眼镜。。。</p>
+<p>1957年：<br>电影摄影师 Morton Heilig 发明了名为Sensorama得虚拟现实仿真模拟器。。。</p>
+<p>1968年：  头戴式显示器出现<br>Ivan Sutherland———–》计算机科学家<br>“达摩克利斯之剑”<br>。。。。。<br>。。。。。。。<br>。。。。</p>
+<h1 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h1><p>VR眩晕与晕船晕车没太大区别—》人耳朵里的前庭系统所感受到的运动状态和视觉系统不一致，就会在大脑里打架。。你就感受到晕晕的了</p>
+<h1 id="人机交互的三个革命性历程"><a href="#人机交互的三个革命性历程" class="headerlink" title="人机交互的三个革命性历程"></a>人机交互的三个革命性历程</h1><ul>
+<li>鼠标</li>
+<li>多点触控</li>
+<li>体感技术</li>
+</ul>
+<h1 id="动作捕捉"><a href="#动作捕捉" class="headerlink" title="动作捕捉"></a>动作捕捉</h1><ul>
+<li>光学式动作捕捉：通过对目标上特定光点的监视和跟踪来完成运动捕捉的任务。</li>
+<li>惯性导航式动作捕捉： 在运动物体的重要节点佩戴集成加速计，陀螺仪和磁力计等惯性传感设备。。。。</li>
+<li>手势跟踪</li>
+<li>眼球跟踪</li>
+</ul>
+<h1 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h1><p>谷歌： cardboard</p>
+]]></content>
+      <tags>
+        <tag>阅读</tag>
       </tags>
   </entry>
   <entry>
